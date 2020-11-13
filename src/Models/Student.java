@@ -1,6 +1,8 @@
 package Models;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class Student implements Comparable<Student>
@@ -93,7 +95,16 @@ public class Student implements Comparable<Student>
      */
     public double getAvgMark()
     {
-        return 0;
+        if (courses.size()==0)
+            return 0;
+
+        double sum = 0;
+        Collection<Integer> grades = courses.values();
+
+        for (Integer grade: grades)
+            sum += grade;
+
+        return sum/courses.size();
     }
 
     public String getAvgGradeString()
@@ -103,7 +114,7 @@ public class Student implements Comparable<Student>
 
     public int getNumOfCourses()
     {
-        return 0;
+        return courses.size();
     }
 
     /**

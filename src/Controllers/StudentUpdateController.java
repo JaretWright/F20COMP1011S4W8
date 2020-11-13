@@ -56,11 +56,16 @@ public class StudentUpdateController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        allStudents = MagicData.getStudents();
+
+        //configuring the TableView
         studentNumCol.setCellValueFactory(new PropertyValueFactory<>("studNum"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         avgGradeCol.setCellValueFactory(new PropertyValueFactory<>("avgGradeString"));
         numOfCoursesCol.setCellValueFactory(new PropertyValueFactory<>("numOfCourses"));
+        tableView.getItems().addAll(allStudents);
+        updateLabels();
 
         //Configure the combobox
         coursesComboBox.setPromptText("Select a course");
@@ -84,7 +89,7 @@ public class StudentUpdateController implements Initializable {
 
     private void updateLabels()
     {
-
+        rowsReturnedLabel.setText("Rows Returned: "+tableView.getItems().size());
     }
 
     @FXML

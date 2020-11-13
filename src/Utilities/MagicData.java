@@ -14,7 +14,7 @@ public class MagicData {
 
     /**
      * This method will return an ArrayList of Student objects
-     * @return ArrayList<Student></Student>
+     * @return ArrayList<Student>
      */
     public static ArrayList<Student> getStudents()  {
         ArrayList<Student> students = new ArrayList<>();
