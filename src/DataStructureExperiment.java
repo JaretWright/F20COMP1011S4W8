@@ -3,6 +3,7 @@ import Models.Student;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.TreeSet;
 
 public class DataStructureExperiment {
     public static void main(String[] args) {
@@ -45,6 +46,15 @@ public class DataStructureExperiment {
         studentHS.add(st1);
         Student st5 = new Student(10001,"Fred","Flintstone");
         studentHS.add(st5);
+        studentAL.add(0,st3);
+        studentAL.add(st1);
+        studentAL.add(st5);
 
+        TreeSet<Student> treeSet = new TreeSet<>();
+        treeSet.addAll(studentAL);
+
+        System.out.println("TreeSet printout");
+        for (Student student:treeSet)
+            System.out.println(student);
     }
 }

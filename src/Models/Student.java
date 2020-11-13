@@ -3,7 +3,7 @@ package Models;
 import java.util.HashMap;
 import java.util.Set;
 
-public class Student
+public class Student implements Comparable<Student>
 {
     private String firstName, lastName;
     private int studNum;
@@ -131,5 +131,10 @@ public class Student
             return this.studNum == ((Student)object).getStudNum();
 
         return false;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return Integer.compare(this.getStudNum(),o.getStudNum());
     }
 }
