@@ -3,6 +3,8 @@ package Controllers;
 import Models.Course;
 import Models.Student;
 import Utilities.MagicData;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -66,6 +68,30 @@ public class StudentUpdateController implements Initializable {
         numOfCoursesCol.setCellValueFactory(new PropertyValueFactory<>("numOfCourses"));
         tableView.getItems().addAll(allStudents);
         updateLabels();
+
+        //Configure the TextField with a listener to filter
+        //the TableView
+        searchTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue,
+                                    String oldString, String searchString) {
+                //The big goal is to filter the TableView to only hold Student objects
+                //that contain the search String
+                ArrayList<Student> filtered = new ArrayList<>();
+
+                //loop over the students and check if they contain the search string
+                for (Student student : allStudents)
+                {
+                    if (student.contains(searchString))
+                        filtered.add(student);
+                }
+
+                //update the TableView with the filtered list
+                tableView.getItems().clear();
+                tableView.getItems().addAll(filtered);
+                updateLabels();
+            }
+        });
 
         //Configure the combobox
         coursesComboBox.setPromptText("Select a course");

@@ -107,6 +107,8 @@ public class Student implements Comparable<Student>
         return sum/courses.size();
     }
 
+
+
     public String getAvgGradeString()
     {
         return String.format("%.1f %%", getAvgMark());
@@ -147,5 +149,19 @@ public class Student implements Comparable<Student>
     @Override
     public int compareTo(Student o) {
         return Integer.compare(this.getStudNum(),o.getStudNum());
+    }
+
+    /**
+     * This method will return true if the searchString is
+     * found in the first name, last name or student number
+     */
+    public boolean contains(String searchString)
+    {
+        String studentNumString = Integer.toString(studNum);
+        searchString = searchString.toLowerCase();
+
+        return firstName.toLowerCase().contains(searchString) ||
+                lastName.toLowerCase().contains(searchString) ||
+                studentNumString.contains(searchString);
     }
 }
